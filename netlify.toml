@@ -5,3 +5,26 @@
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
+
+# Simple routes for kiosk hardware to point at, instead of the long
+# space-encoded ui_kits/ paths. Rewrites (status 200) keep the clean URL
+# in the address bar while serving the nested file.
+[[redirects]]
+  from = "/display-1"
+  to = "/ui_kits/Kiosk%20Display%201%20-%20Info%20Loop/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/info-loop"
+  to = "/ui_kits/Kiosk%20Display%201%20-%20Info%20Loop/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/display-2"
+  to = "/ui_kits/Kiosk%20Display%202%20-%20QR%20Standby/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/qr-standby"
+  to = "/ui_kits/Kiosk%20Display%202%20-%20QR%20Standby/index.html"
+  status = 200
