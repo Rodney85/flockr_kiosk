@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flockr — Kiosk Displays</title>
+<link rel="stylesheet" href="./styles.css">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100vh; background: var(--brand-950); font-family: var(--font-body);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--space-6); padding: var(--space-6);
+  }
+  img.logo { height: 30px; }
+  h1 { font: 600 22px/1.3 var(--font-display); color: #fff; text-align: center; }
+  .cards { display: flex; gap: var(--space-5); flex-wrap: wrap; justify-content: center; }
+  a.card {
+    display: block; width: 260px; padding: var(--space-5); border-radius: var(--radius-lg);
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    text-decoration: none; color: var(--brand-100); transition: background 150ms, border-color 150ms;
+  }
+  a.card:hover { background: rgba(255,255,255,.08); border-color: rgba(227,189,92,.4); }
+  a.card .eyebrow { font: 700 11px var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--gold-300); }
+  a.card h2 { font: 600 18px var(--font-body); color: #fff; margin: 8px 0 6px; }
+  a.card p { font: 14px/1.5 var(--font-body); color: var(--brand-200); }
+  footer { font: 600 12px var(--font-body); color: var(--brand-300); text-align: center; }
+</style>
+</head>
+<body>
+  <img class="logo" src="./assets/logo/flockr-lockup-white.svg" alt="Flockr">
+  <h1>Trade-Show Kiosk — Booth Rig</h1>
+  <div class="cards">
+    <a class="card" href="./ui_kits/Kiosk%20Display%201%20-%20Info%20Loop/">
+      <div class="eyebrow">Display 1</div>
+      <h2>Info Loop</h2>
+      <p>Unattended, auto-advancing 6-slide product story.</p>
+    </a>
+    <a class="card" href="./ui_kits/Kiosk%20Display%202%20-%20QR%20Standby/">
+      <div class="eyebrow">Display 2</div>
+      <h2>QR Standby</h2>
+      <p>Static QR scan screen, always-on.</p>
+    </a>
+  </div>
+  <footer>Internal directory page — kiosk hardware should point straight at each display's URL.</footer>
+</body>
+</html>
