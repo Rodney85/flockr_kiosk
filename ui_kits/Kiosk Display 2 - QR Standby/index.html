@@ -40,7 +40,8 @@
   @keyframes ring { 0% { opacity: .55; transform: scale(.96); } 80% { opacity: 0; transform: scale(1.08); } 100% { opacity: 0; } }
   .qr-card { background: #fff; border-radius: 22px; padding: 18px; box-shadow: 0 20px 50px rgba(0,0,0,.4); position: relative; animation: breathe 4400ms ease-in-out infinite; }
   @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-  .qr-sq { width: 196px; height: 196px; border-radius: 8px; background: repeating-linear-gradient(45deg, #2b1a0c 0 6px, #efe6d9 6px 12px); display: flex; align-items: center; justify-content: center; color: #fff; font: 700 11px var(--font-body); text-align: center; }
+  .qr-sq { width: 196px; height: 196px; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; }
+  .qr-sq svg { width: 100%; height: 100%; }
 
   .fallback-url { font: 600 12px var(--font-body); color: var(--brand-100); margin-top: 14px; letter-spacing: .02em; }
   .fallback-url b { color: var(--gold-300); }
@@ -66,9 +67,9 @@
     <div class="body-copy">Fill in a few details on your phone. We'll send the full product guide, free.</div>
     <div class="qr-wrap">
       <div class="scan-ring"></div>
-      <div class="qr-card"><div class="qr-sq">QR CODE<br>PLACEHOLDER</div></div>
+      <div class="qr-card"><div class="qr-sq"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h29v29H0z"/><path stroke="#2b1a0c" d="M0 0.5h7m1 0h4m3 0h6m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m2 0h2m2 0h3m3 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h2m5 0h1m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h2m1 0h1m4 0h2m1 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h2m1 0h1m1 0h2m2 0h2M0 8.5h1m1 0h2m1 0h3m4 0h3m1 0h4m2 0h1m2 0h1m1 0h2M2 9.5h3m3 0h2m5 0h2m1 0h7m3 0h1M0 10.5h2m3 0h2m1 0h4m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2M0 11.5h4m4 0h1m1 0h6m4 0h2m6 0h1M2 12.5h3m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m5 0h2M2 13.5h1m1 0h2m1 0h1m1 0h5m4 0h2m1 0h2m3 0h3M0 14.5h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h1m4 0h1m2 0h3m1 0h3M0 15.5h1m1 0h2m4 0h1m2 0h1m1 0h1m1 0h1m3 0h5m3 0h1M1 16.5h2m3 0h1m1 0h1m10 0h3m1 0h3m1 0h1M1 17.5h1m1 0h3m1 0h1m3 0h1m1 0h1m3 0h1m5 0h1m1 0h3M0 18.5h1m1 0h1m1 0h1m1 0h4m2 0h1m4 0h1m2 0h1m3 0h1m1 0h1M2 19.5h2m1 0h1m1 0h1m1 0h1m5 0h3m4 0h1m1 0h1m1 0h1M1 20.5h2m2 0h2m3 0h4m1 0h4m1 0h7M8 21.5h4m1 0h3m2 0h1m1 0h1m3 0h5M0 22.5h7m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h2m1 0h1M0 23.5h1m5 0h1m1 0h4m3 0h1m2 0h1m1 0h1m3 0h2m1 0h1M0 24.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m2 0h5m1 0h1m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h8m1 0h2m2 0h1m1 0h3m1 0h1M0 26.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h1m3 0h1m2 0h1m1 0h1M0 27.5h1m5 0h1m3 0h3m2 0h1m2 0h3m1 0h1m2 0h1m1 0h1M0 28.5h7m1 0h2m2 0h1m1 0h1m1 0h1m1 0h5m4 0h1"/></svg></div></div>
     </div>
-    <div class="fallback-url">or go to <b>flockr.africa/guide</b></div>
+    <div class="fallback-url">or go to <b>flockrform.netlify.app</b></div>
     <div class="trust-strip">
       <div><div class="stat">5+</div><div class="stat-lbl">COUNTRIES</div></div>
       <div><div class="stat">US$210B</div><div class="stat-lbl">ECONOMY</div></div>
