@@ -8,7 +8,7 @@
 <style>
   * { box-sizing: border-box; margin: 0; }
   html, body { width: 100%; height: 100%; }
-  body { background: #050403; font-family: var(--font-body); overflow: hidden; }
+  body { background: #ECE0CC; font-family: var(--font-body); overflow: hidden; }
 
   /* Fixed 460x940 logical canvas (design target), scaled to fit whatever the
      kiosk screen's actual resolution is — see fit() below. */
@@ -16,41 +16,45 @@
   .screen {
     width: 100%; height: 100%; overflow: hidden; position: relative;
     background:
-      radial-gradient(circle at 50% 20%, var(--brand-800), var(--brand-950) 75%),
-      radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.4px);
+      radial-gradient(circle at 50% 20%, var(--gold-100), var(--cream-0) 75%),
+      radial-gradient(rgba(116,66,20,.12) 1px, transparent 1.4px);
     background-size: 100% 100%, 22px 22px;
     display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 34px;
   }
 
-  .wm { position: absolute; width: 620px; height: 620px; top: -200px; left: -180px; opacity: .05; transform: rotate(-6deg); pointer-events: none; mix-blend-mode: screen; }
+  .wm { position: absolute; width: 620px; height: 620px; top: -200px; left: -180px; opacity: .05; transform: rotate(-6deg); pointer-events: none; }
   .wm svg { width: 100%; height: 100%; }
-  .wm path, .wm ellipse { fill: #fff; }
+  .wm path, .wm ellipse { fill: var(--brand-600); }
 
   .content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 
-  .eyebrow { display: inline-flex; align-items: center; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.09); color: var(--gold-300); font: 700 11px var(--font-body); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; animation: pulse 7s ease-in-out infinite; }
+  .eyebrow { display: inline-flex; align-items: center; padding: 7px 14px; border-radius: 999px; background: rgba(116,66,20,.08); color: var(--gold-700); font: 700 11px var(--font-body); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; animation: pulse 7s ease-in-out infinite; }
   @keyframes pulse { 0%, 100% { opacity: .9; } 50% { opacity: 1; } }
 
-  .headline { font: 600 30px/1.15 var(--font-display); color: #fff; }
-  .headline em { font-style: italic; font-weight: 500; color: var(--gold-300); }
-  .body-copy { font: 15px/1.55 var(--font-body); color: var(--brand-100); max-width: 300px; margin: 14px 0 28px; }
+  .headline { font: 600 30px/1.25 var(--font-display); color: var(--text-primary); margin-bottom: 4px; }
+  .headline em { font-style: italic; font-weight: 500; color: var(--gold-600); }
+  .body-copy { font: 15px/1.55 var(--font-body); color: var(--text-secondary); max-width: 300px; margin: 24px 0 28px; }
 
   .qr-wrap { position: relative; }
-  .scan-ring { position: absolute; inset: -14px; border-radius: 30px; border: 2px solid var(--gold-400); opacity: 0; animation: ring 2800ms cubic-bezier(.2,.7,.3,1) infinite; }
-  @keyframes ring { 0% { opacity: .55; transform: scale(.96); } 80% { opacity: 0; transform: scale(1.08); } 100% { opacity: 0; } }
-  .qr-card { background: #fff; border-radius: 22px; padding: 18px; box-shadow: 0 20px 50px rgba(0,0,0,.4); position: relative; animation: breathe 4400ms ease-in-out infinite; }
+  .qr-card { background: #fff; border-radius: 20px; padding: 10px; box-shadow: 0 20px 50px rgba(116,66,20,.18), 0 0 0 1px var(--border-subtle); position: relative; animation: breathe 4400ms ease-in-out infinite; }
+  .qr-card::after { content: ''; position: absolute; inset: -6px; border-radius: 26px; box-shadow: 0 0 0 0 rgba(217,164,65,.55); animation: brandPulse 2600ms cubic-bezier(.3,.7,.4,1) infinite; pointer-events: none; }
+  @keyframes brandPulse {
+    0% { box-shadow: 0 0 0 0 rgba(217,164,65,.5), 0 0 0 0 rgba(116,66,20,.25); }
+    60% { box-shadow: 0 0 0 10px rgba(217,164,65,0), 0 0 0 18px rgba(116,66,20,0); }
+    100% { box-shadow: 0 0 0 10px rgba(217,164,65,0), 0 0 0 18px rgba(116,66,20,0); }
+  }
   @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-  .qr-sq { width: 196px; height: 196px; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; }
+  .qr-sq { width: 260px; height: 260px; border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; }
   .qr-sq svg { width: 100%; height: 100%; }
 
-  .fallback-url { font: 600 12px var(--font-body); color: var(--brand-100); margin-top: 14px; letter-spacing: .02em; }
-  .fallback-url b { color: var(--gold-300); }
+  .fallback-url { font: 600 12px var(--font-body); color: var(--text-secondary); margin-top: 14px; letter-spacing: .02em; }
+  .fallback-url b { color: var(--gold-700); }
 
   .trust-strip { display: flex; gap: 26px; margin-top: 28px; }
-  .stat { font: 700 22px/1 var(--font-display); color: #fff; }
-  .stat-lbl { font: 600 11px var(--font-body); letter-spacing: .09em; color: var(--gold-300); margin-top: 4px; }
+  .stat { font: 700 22px/1 var(--font-display); color: var(--gold-500); }
+  .stat-lbl { font: 600 11px var(--font-body); letter-spacing: .09em; color: var(--text-muted); margin-top: 4px; }
 
-  @media (prefers-reduced-motion: reduce) { .eyebrow, .qr-card, .scan-ring { animation: none !important; } }
+  @media (prefers-reduced-motion: reduce) { .eyebrow, .qr-card, .qr-card::after { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -61,13 +65,12 @@
     <svg viewBox="0 0 54 52"><ellipse cx="26.6" cy="26" rx="26.6" ry="26"/><path d="M12.4 26.3C4.7 21.2 9.8 15.9 13.3 13.9C0.1 19.7 7.2 26.7 12.4 29.4C17.5 29.1 19.4 32.5 19.7 34.2L20.9 42.9L21.9 34.2C20.9 27.4 15.2 26.1 12.4 26.3Z" fill="#2b1a0c"/><path d="M40.7 26.3C48.2 21.2 43.2 15.9 39.8 13.9C52.8 19.7 45.8 26.7 40.7 29.4C35.7 29.1 33.8 32.5 33.5 34.2L32.3 42.9L31.3 34.2C32.3 27.4 38 26.1 40.7 26.3Z" fill="#2b1a0c"/></svg>
   </div>
   <div class="content">
-    <img src="../../assets/logo/flockr-lockup-white.svg" style="height:26px;margin-bottom:30px" alt="Flockr">
+    <img src="../../assets/logo/flockr-lockup-horizontal.svg" style="height:26px;margin-bottom:30px" alt="Flockr">
     <div class="eyebrow">Scan to get started</div>
     <div class="headline">Get your free<br><em>Flockr guide.</em></div>
     <div class="body-copy">Fill in a few details on your phone. We'll send the full product guide, free.</div>
     <div class="qr-wrap">
-      <div class="scan-ring"></div>
-      <div class="qr-card"><div class="qr-sq"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h29v29H0z"/><path stroke="#2b1a0c" d="M0 0.5h7m1 0h4m3 0h6m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m2 0h2m2 0h3m3 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h2m5 0h1m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h2m1 0h1m4 0h2m1 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h2m1 0h1m1 0h2m2 0h2M0 8.5h1m1 0h2m1 0h3m4 0h3m1 0h4m2 0h1m2 0h1m1 0h2M2 9.5h3m3 0h2m5 0h2m1 0h7m3 0h1M0 10.5h2m3 0h2m1 0h4m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2M0 11.5h4m4 0h1m1 0h6m4 0h2m6 0h1M2 12.5h3m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m5 0h2M2 13.5h1m1 0h2m1 0h1m1 0h5m4 0h2m1 0h2m3 0h3M0 14.5h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h1m4 0h1m2 0h3m1 0h3M0 15.5h1m1 0h2m4 0h1m2 0h1m1 0h1m1 0h1m3 0h5m3 0h1M1 16.5h2m3 0h1m1 0h1m10 0h3m1 0h3m1 0h1M1 17.5h1m1 0h3m1 0h1m3 0h1m1 0h1m3 0h1m5 0h1m1 0h3M0 18.5h1m1 0h1m1 0h1m1 0h4m2 0h1m4 0h1m2 0h1m3 0h1m1 0h1M2 19.5h2m1 0h1m1 0h1m1 0h1m5 0h3m4 0h1m1 0h1m1 0h1M1 20.5h2m2 0h2m3 0h4m1 0h4m1 0h7M8 21.5h4m1 0h3m2 0h1m1 0h1m3 0h5M0 22.5h7m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h2m1 0h1M0 23.5h1m5 0h1m1 0h4m3 0h1m2 0h1m1 0h1m3 0h2m1 0h1M0 24.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m2 0h5m1 0h1m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h8m1 0h2m2 0h1m1 0h3m1 0h1M0 26.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h1m3 0h1m2 0h1m1 0h1M0 27.5h1m5 0h1m3 0h3m2 0h1m2 0h3m1 0h1m2 0h1m1 0h1M0 28.5h7m1 0h2m2 0h1m1 0h1m1 0h1m1 0h5m4 0h1"/></svg></div></div>
+      <div class="qr-card"><div class="qr-sq"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h29v29H0z"/><path stroke="#2b1a0c" d="M0 0.5h7m1 0h4m3 0h6m1 0h7M0 1.5h1m5 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m2 0h2m2 0h3m3 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h2m2 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h2m5 0h1m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h2m1 0h1m4 0h2m1 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h2m1 0h1m1 0h2m2 0h2M0 8.5h1m1 0h2m1 0h3m4 0h3m1 0h4m2 0h1m2 0h1m1 0h2M2 9.5h3m3 0h2m5 0h2m1 0h7m3 0h1M0 10.5h2m3 0h2m1 0h4m2 0h2m2 0h1m1 0h1m1 0h1m1 0h2M0 11.5h4m4 0h1m1 0h6m4 0h2m6 0h1M2 12.5h3m1 0h1m3 0h1m1 0h1m3 0h2m1 0h1m5 0h2M2 13.5h1m1 0h2m1 0h1m1 0h5m4 0h2m1 0h2m3 0h3M0 14.5h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h1m4 0h1m2 0h3m1 0h3M0 15.5h1m1 0h2m4 0h1m2 0h1m1 0h1m1 0h1m3 0h5m3 0h1M1 16.5h2m3 0h1m1 0h1m10 0h3m1 0h3m1 0h1M1 17.5h1m1 0h3m1 0h1m3 0h1m1 0h1m3 0h1m5 0h1m1 0h3M0 18.5h1m1 0h1m1 0h1m1 0h4m2 0h1m4 0h1m2 0h1m3 0h1m1 0h1M2 19.5h2m1 0h1m1 0h1m1 0h1m5 0h3m4 0h1m1 0h1m1 0h1M1 20.5h2m2 0h2m3 0h4m1 0h4m1 0h7M8 21.5h4m1 0h3m2 0h1m1 0h1m3 0h5M0 22.5h7m1 0h1m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1m1 0h2m1 0h1M0 23.5h1m5 0h1m1 0h4m3 0h1m2 0h1m1 0h1m3 0h2m1 0h1M0 24.5h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h1m2 0h5m1 0h1m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h8m1 0h2m2 0h1m1 0h3m1 0h1M0 26.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h1m3 0h1m2 0h1m1 0h1M0 27.5h1m5 0h1m3 0h3m2 0h1m2 0h3m1 0h1m2 0h1m1 0h1M0 28.5h7m1 0h2m2 0h1m1 0h1m1 0h1m1 0h5m4 0h1"/></svg></div></div>
     </div>
     <div class="trust-strip">
       <div><div class="stat">5+</div><div class="stat-lbl">COUNTRIES</div></div>
