@@ -86,8 +86,11 @@ function fit() {
   const scale = Math.min(window.innerWidth / 460, window.innerHeight / 940);
   stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
 }
-window.addEventListener('resize', fit);
 fit();
+window.addEventListener('resize', fit);
+window.addEventListener('orientationchange', () => setTimeout(fit, 100));
+if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
+new ResizeObserver(fit).observe(document.documentElement);
 </script>
 </body>
 </html>
